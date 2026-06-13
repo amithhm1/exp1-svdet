@@ -1486,8 +1486,8 @@ input[type="range"]::-moz-range-track {
 
   /* Dynamic canvases (scene, depth, uncertainty) */
   #card-scene canvas,
-  #card-depth canvas,
-  #card-unc canvas {
+  #card-depth3d canvas,
+  #card-unc3d canvas {
     min-height: 160px;
   }
 
@@ -1547,3 +1547,57 @@ input[type="range"]::-moz-range-track {
   }
 }
 
+/* ================================================================
+   MOBILE RESPONSIVE OVERRIDES
+   ================================================================ */
+@media (max-width: 900px) {
+  body {
+    height: auto;
+    min-height: 100vh;
+    overflow: auto;
+  }
+  
+  #setup-view, #simulation-view {
+    height: auto;
+    overflow: visible;
+  }
+  
+  /* Reset panels from scroll to visible */
+  #setup-view #wizard-panel,
+  #setup-view #canvas-area,
+  #setup-view #controls-panel,
+  #simulation-view #wizard-panel,
+  #simulation-view #canvas-area,
+  #simulation-view #controls-panel {
+    overflow: visible;
+    height: auto;
+    max-height: none;
+  }
+  
+  /* Setup View Layout */
+  #setup-view #app-main {
+    display: flex;
+    flex-direction: column;
+  }
+  #setup-view #wizard-panel { order: 1; }
+  #setup-view #canvas-area { order: 2; display: flex; flex-direction: column; }
+  #setup-view .top-row { flex-direction: column !important; }
+  #setup-view #card-3d { order: 21; }
+  #setup-view .disparity-card { order: 22; }
+  #setup-view .obs-row { order: 23; flex-direction: column; }
+  #setup-view #controls-panel { order: 3; }
+  
+  /* Simulation View Layout */
+  #simulation-view #app-main {
+    display: flex;
+    flex-direction: column;
+  }
+  #simulation-view #wizard-panel { order: 1; }
+  #simulation-view #canvas-area { order: 2; display: flex; flex-direction: column; }
+  #simulation-view .canvas-row { flex-direction: column !important; }
+  #simulation-view #card-scene { order: 21; }
+  #simulation-view .dual-cam { order: 22; flex-direction: row !important; }
+  #simulation-view #card-depth3d { order: 23; }
+  #simulation-view #card-unc3d { order: 24; }
+  #simulation-view #controls-panel { order: 3; }
+}
